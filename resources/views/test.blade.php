@@ -1,4 +1,4 @@
 <div id="app">
   <Welcome />
 </div>
-<script src="{{ mix('js/app.js') }}"></script>
+<script type="module" src="{{ mix('resources/js/app.js') }}"></script>
