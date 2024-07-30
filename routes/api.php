@@ -6,4 +6,4 @@ use App\Http\Controllers\ProductIndexController;
 use App\Http\Controllers\ProductController;
 
 Route::get('/products', ProductIndexController::class);
-Route::get('/AddProduct', ProductController::class);
+Route::resource('product', App\Http\Controllers\ProductController::class)->only(['store','show','update','destroy']);

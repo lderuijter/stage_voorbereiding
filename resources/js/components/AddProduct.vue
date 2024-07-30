@@ -25,7 +25,6 @@
                                     <label>Is this product certified?</label>
                                     <input
                                         type="checkbox"
-                                        :checked="checked"
                                         @input="checked = $event.target.checked"
                                         v-model="product.is_certified"
                                     />
@@ -42,6 +41,8 @@
     </div>
 </template>
 <script>
+import axios from 'axios';
+
 export default {
     name:"add-product",
     data(){
@@ -49,14 +50,14 @@ export default {
             product:{
                 title:"",
                 description:"",
-                is_certified: false
+                is_certified: false,
             }
         }
     },
     methods:{
         async create(){
-            await this.axios.post('/api/AddProduct',this.product).then(response=>{
-                this.$router.push({name:"productList"})
+            await axios.post('/api/product', this.product).then(response=>{
+                console.log(response)
             }).catch(error=>{
                 console.log(error)
             })

@@ -13,6 +13,7 @@ onMounted(() => getProducts())
 </script>
 
 <template>
+  <a href="/create">Create Product</a>
   <h1>All Products</h1>
   <div>
     <ul>
