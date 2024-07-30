@@ -1,0 +1,26 @@
+<script setup>
+import axios from 'axios'
+import { ref, onMounted } from 'vue'
+
+const products = ref([])
+const getProducts = () => {
+  axios.get('/api/products')
+  .then(result => products.value = result.data)
+  .catch(error => console.log(error.response.data))
+}
+
+onMounted(() => getProducts())
+</script>
+
+<template>
+  <h1>All Products</h1>
+  <div>
+    <ul>
+      <li v-for="product in products" :key="product.id">
+        <h2>Title: {{ product.title }}</h2>
+        <h2>Description: {{ product.description }}</h2>
+        <h3 v-if="product.is_certified">Product is certified</h3>
+      </li>
+    </ul>
+  </div>
+</template>
