@@ -1,3 +1,16 @@
+<template>
+  <a href="/create">Create Product</a>
+  <h1>All Products</h1>
+  <div>
+    <div v-for="product in products" :key="product.id">
+      ---
+      <h2>Title: {{ product.title }}</h2>
+      <h2>Description: {{ product.description }}</h2>
+      <h3 v-if="product.is_certified">Product is certified</h3>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import axios from 'axios'
 import { ref, onMounted } from 'vue'
@@ -11,17 +24,3 @@ const getProducts = () => {
 
 onMounted(() => getProducts())
 </script>
-
-<template>
-  <a href="/create">Create Product</a>
-  <h1>All Products</h1>
-  <div>
-    <ul>
-      <li v-for="product in products" :key="product.id">
-        <h2>Title: {{ product.title }}</h2>
-        <h2>Description: {{ product.description }}</h2>
-        <h3 v-if="product.is_certified">Product is certified</h3>
-      </li>
-    </ul>
-  </div>
-</template>
