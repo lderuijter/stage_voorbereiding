@@ -3,10 +3,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h1>Add Product</h1>
+                    <h1>Update Product</h1>
                 </div>
                 <div class="card-body">
-                    <form @submit.prevent="create" id="createProduct">
+                    <form @submit.prevent="update" id="updateProduct">
                         <div class="row">
                             <div class="col-12 mb-2">
                                 <div class="form-group">
@@ -49,7 +49,7 @@
 import axios from 'axios';
 
 export default {
-    name:"add-product",
+    name:"update-product",
     data(){
         return {
             product:{
@@ -62,9 +62,9 @@ export default {
     methods:{
         async create(){
             await axios.post('/api/product', this.product).then(response=>{
-                const createProductForm = document.getElementById('createProduct')
-                createProductForm.submit()
-                createProductForm.reset()
+                const updateProductForm = document.getElementById('updateProduct')
+                updateProductForm.submit()
+                updateProductForm.reset()
                 console.log(response)
             }).catch(error=>{
                 console.log(error)

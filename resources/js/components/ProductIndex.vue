@@ -7,6 +7,7 @@
       <h2>Title: {{ product.title }}</h2>
       <h2>Description: {{ product.description }}</h2>
       <h3 v-if="product.is_certified">Product is certified</h3>
+      <router-link :to="{ path: 'update', params: { id: product.id }}">Update product</router-link>
     </div>
   </div>
 </template>
