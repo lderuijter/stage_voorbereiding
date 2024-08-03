@@ -6,7 +6,7 @@
                     <h1>Update Product</h1>
                 </div>
                 <div class="card-body">
-                    <form @submit.prevent="update" id="updateProduct">
+                    <form @submit.prevent="update">
                         <div class="row">
                             <div class="col-12 mb-2">
                                 <div class="form-group">
@@ -26,6 +26,7 @@
                                     <input
                                         type="checkbox"
                                         @input="checked = $event.target.checked"
+                                        :checked="product.is_certified"
                                         v-model="product.is_certified"
                                     />
                                 </div>
@@ -33,10 +34,6 @@
                             <br>
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                            <br>
-                            <div class="col-12">
-                                <a href="/">Back to all products</a>
                             </div>
                         </div>                        
                     </form>
@@ -50,22 +47,27 @@ import axios from 'axios';
 
 export default {
     name:"update-product",
+    mounted(){
+        this.getProduct()
+    },
     data(){
         return {
-            product:{
-                title:"",
-                description:"",
-                is_certified: false,
-            }
+            product:{}
         }
     },
     methods:{
-        async create(){
-            await axios.post('/api/product', this.product).then(response=>{
-                const updateProductForm = document.getElementById('updateProduct')
-                updateProductForm.submit()
-                updateProductForm.reset()
+        getProduct(){
+            axios.get('/api/product/' + this.$route.params.id).then(response=>{
+                this.product = response.data
+                console.log(response.data)
+            }).catch(error=>{
+                console.log(error)
+            })
+        },
+        async update(){
+            await axios.put('/api/product/' + this.$route.params.id, this.product).then(response=>{
                 console.log(response)
+                this.$router.push('/products')
             }).catch(error=>{
                 console.log(error)
             })

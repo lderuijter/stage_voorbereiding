@@ -6,7 +6,7 @@
                     <h1>Add Product</h1>
                 </div>
                 <div class="card-body">
-                    <form @submit.prevent="create" id="createProduct">
+                    <form @submit.prevent="create">
                         <div class="row">
                             <div class="col-12 mb-2">
                                 <div class="form-group">
@@ -34,10 +34,6 @@
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
-                            <br>
-                            <div class="col-12">
-                                <a href="/">Back to all products</a>
-                            </div>
                         </div>                        
                     </form>
                 </div>
@@ -62,10 +58,8 @@ export default {
     methods:{
         async create(){
             await axios.post('/api/product', this.product).then(response=>{
-                const createProductForm = document.getElementById('createProduct')
-                createProductForm.submit()
-                createProductForm.reset()
                 console.log(response)
+                this.$router.push('/products')
             }).catch(error=>{
                 console.log(error)
             })
