@@ -1,4 +1,4 @@
-# Run these commands: 
+# Instructions to setup this project 
 ## Rename .env.example to .env
 ## To install php dependencies
 composer install --ignore-platform-reqs
