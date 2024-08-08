@@ -6,6 +6,11 @@
                 <div class="card-header">
                     <h1>Update Product</h1>
                 </div>
+                <router-link class="nav-link" to="/">
+                        <button type="submit" class="btn btn-danger">
+                            Close window
+                        </button>
+                    </router-link>
                 <div class="card-body">
                     <form @submit.prevent="update">
                         <div class="row">
@@ -68,7 +73,8 @@ export default {
         async update(){
             await axios.put('/api/product/' + this.$route.params.id, this.product).then(response=>{
                 console.log(response)
-                this.$router.push('/products')
+                this.$router.push('/')
+                window.location.reload();
             }).catch(error=>{
                 console.log(error)
             })

@@ -6,6 +6,11 @@
                 <div class="card-header">
                     <h1>Add Product</h1>
                 </div>
+                <router-link class="nav-link" to="/">
+                        <button type="submit" class="btn btn-danger">
+                            Close window
+                        </button>
+                    </router-link>
                 <div class="card-body">
                     <form @submit.prevent="create">
                         <div class="row">
@@ -60,7 +65,8 @@ export default {
         async create(){
             await axios.post('/api/product', this.product).then(response=>{
                 console.log(response)
-                this.$router.push('/products')
+                this.$router.push('/')
+                window.location.reload();
             }).catch(error=>{
                 console.log(error)
             })
