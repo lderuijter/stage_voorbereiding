@@ -1,5 +1,7 @@
 # Instructions to setup this project 
 ## Rename .env.example to .env
+## Create a database named laravel to connect to
+## Uncomment database rules in .env
 ## Install php dependencies
 composer install --ignore-platform-reqs
 ## Update all the dependencies
@@ -12,6 +14,5 @@ npm run dev
 php artisan serve
 ## Generate key
 php artisan key:generate
-## Create a database named laravel to connect to
 ## Run migrations
 php artisan migrate
